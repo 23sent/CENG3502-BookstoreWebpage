@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Homework</title>
+  <link rel="stylesheet" href="./index.css" />
+</head>
+
+<script src="./books.js"></script>
+<script src="./DataClasses.js"></script>
+<script src="./HtmlElementGenerators.js"></script>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <h1 class="navbar-title">Library</h1>
+      <div class="navbar-right-part">
+        <div class="search-input-div">
+          <input id="search-input" type="text" placeholder="Search..." />
+          <span id="search-button" class="search-input-icon" onclick="searchBooks()">&#x1F50E;&#xFE0E;</span>
+        </div>
+        <button onclick="openPage(PAGES.BOOKS)">Books</button>
+        <button id="navbar-basket-container" onclick="openPage(PAGES.BASKET)">
+          <span id="basket-badge"></span>
+          <span>books in basket</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div id="booklist-page" class="container" style="display: block">
+    <div class="page-header">
+      <div class="page-title">Books</div>
+      <button id="open-add-book-button" onclick="openAddBookModal()">+ Add Book</button>
+    </div>
+    <div id="booklist-content">
+      <!-- <div class="row">
+        <div class="book-item">
+          <div class="book-item-body">
+            <img class="book-img"
+              src="https://raw.githubusercontent.com/benoitvallon/100-best-books/master/static/images/the-old-man-and-the-sea.jpg"></img>
+            <div class="book-info">
+              <div class="book-title">The Epic Of Gilgamesh</div>
+              <div class="book-author">Unknown</div>
+              <div class="book-desc">
+                The Epic of Gilgamesh is an epic poem from ancient Mesopotamia,
+                regarded as the earliest surviving notable literature and the
+                second oldest religious text, after the Pyramid Texts.
+              </div>
+            </div>
+          </div>
+          <div class="book-buy-button-div">
+            <button class="book-buy-button"> + Add to Basket</button>
+          </div>
+        </div> -->
+    </div>
+  </div>
+
+  <div id="basket-page" class="container" style="display: none">
+    <div class="page-header">
+      <div class="page-title">Basket</div>
+      <div class="total-price-div">
+        <button onclick="openPage(PAGES.BOOKS)" style="margin: 2px">Continue Shopping</button>
+
+        <button onclick="openPaymentPage()" style="margin: 2px">
+          <span>Total: </span>
+          <span id="total-price"></span>
+          <span> - Buy it</span>
+        </button>
+      </div>
+    </div>
+    <div id="basket-content">
+      <!-- <div>
+        <div class="basket-item">
+          <img class="basket-item-img"
+            src="https://raw.githubusercontent.com/benoitvallon/100-best-books/master/static/images/the-old-man-and-the-sea.jpg">
+          <div class="basket-item-info">
+            <div class="basket-item-title">The Divine Comedy</div>
+            <div class="basket-item-author">Author Name</div>
+          </div>
+          <div class="basket-item-add-remove-buttons">
+            <button>-</button>
+            <div>5</div>
+            <button>+</button>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+  </div>
+
+  <div id="payment-page" style="display: none">
+    <div class="container">
+      <div class="page-title">Payment</div>
+      <div class="payment-form-div">
+        <div class="payment-form-title">Address</div>
+        <form id="payment-address-form" class="payment-form">
+          <div class="payment-form-row">
+            <div class="payment-form-question">
+              <label>Name</label>
+              <input id="customer-name" name="customer-name type=" text" />
+            </div>
+            <div class="payment-form-question">
+              <label>Surname</label>
+              <input id="customer-surname" name="customer-surname" type="text" />
+            </div>
+          </div>
+
+          <div class="payment-form-row">
+            <div class="payment-form-question">
+              <label>Address</label>
+              <textarea id="customer-address" name="customer-address" rows="5"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="payment-form-div">
+        <div class="payment-form-title">
+          <span>Payment Method: </span>
+          <span class="payment-option-list">
+            <button id="credit-card-option-button" class="payment-option">Credit Card</button>
+            <button id="wire-transfer-option-button" class="payment-option">Wire Transfer</button>
+          </span>
+        </div>
+
+
+        <form id="payment-credit-card-form" class="payment-form">
+          <div class="payment-form-row">
+            <div class="payment-form-question">
+              <label>Name Surname</label>
+              <input name="name" type="text" />
+            </div>
+            <div class="payment-form-question">
+              <label>Card No</label>
+              <input name="card" type="text" />
+            </div>
+          </div>
+
+          <div class="payment-form-row">
+
+            <div class="payment-form-question">
+              <label>Date</label>
+              <input name="date" type="text" />
+            </div>
+            <div class="payment-form-question">
+              <label>CVC</label>
+              <input name="cvc" type="number" />
+            </div>
+          </div>
+        </form>
+
+        <form id="payment-wire-transfer-form" class="payment-form">
+          <div class="payment-form-row">
+            <div class="payment-form-question">
+              <label>Name Surname</label>
+              <input name="name" type="text" />
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="payment-info">
+        <div class="payment-form-title">Shop Details</div>
+        <div class="payment-info-col">
+          <div class="payment-info-item">
+            <div class="payment-info-title">Name Surname</div>
+            <div id="order-customername"></div>
+          </div>
+          <div class="payment-info-item">
+            <div class="payment-info-title">Adress</div>
+            <div id="order-address"></div>
+          </div>
+        </div>
+
+        <div class="payment-info-col">
+          <div class="payment-info-item">
+            <div class="payment-info-title">Total</div>
+            <div id="order-total-price"> </div>
+          </div>
+          <div class="payment-info-item">
+            <button>Order Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="add-book-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title">Add New Book to Library</span>
+        <button id="add-book-close-button" onclick="closeAddBookModal()">X</button>
+      </div>
+
+      <form id="add-book-form">
+        <div class="add-book-form-question">
+          <label>Title</label>
+          <input name="author" type="text" />
+        </div>
+        <div class="add-book-form-question">
+          <label>Author</label>
+          <input name="title" type="text" />
+        </div>
+        <div class="add-book-form-question">
+          <label>Description</label>
+          <input name="description" type="text" />
+        </div>
+        <div class="add-book-form-question">
+          <label>Image Url</label>
+          <input name="image_url" type="text" />
+        </div>
+        <div class="add-book-form-question">
+          <label>Price</label>
+          <input name="price" type="number" />
+        </div>
+      </form>
+      <div class="add-book-button-div">
+        <button id="add-book-button" onclick="addBookButtonFunc()">+ Add Book</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>MSKU CENG</span>
+    <span>CENG 3502 - Dynamic Web Programming</span>
+    <span>Utku Sagocak - 180709046</span>
+  </footer>
+
+  <script src="./index.js"></script>
+</body>
+
+</html>
