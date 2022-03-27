@@ -14,11 +14,6 @@ body {
   flex-direction: column;
 }
 
-h1 {
-  font-size: 64px;
-  margin-bottom: -25px;
-}
-
 textarea,
 input {
   color: black;
@@ -97,6 +92,10 @@ button:hover {
   margin: 0px 15px;
 }
 
+#search-input {
+  width: 250px;
+}
+
 .search-input-icon {
   margin-left: auto;
   position: absolute;
@@ -118,9 +117,11 @@ button:hover {
 }
 
 .navbar-title {
+  font-size: 64px;
+
   margin: 0px;
   margin-bottom: -35px;
-  margin-right: 65px;
+  margin-right: 25px;
   margin-left: 25px;
   padding: 10px 30px;
   background-color: white;
@@ -482,4 +483,14 @@ footer span {
 .payment-option.selected {
   background-color: black;
   color: white;
+}
+
+@media (max-width: 775px) {
+  .navbar-title {
+    font-size: 32px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+  }
 }
