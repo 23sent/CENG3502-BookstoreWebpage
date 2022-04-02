@@ -76,6 +76,13 @@ class Basket {
     }
   }
 
+  clearBasket() {
+    this.books = [];
+    if (this._observer) {
+      this._observer(this);
+    }
+  }
+
   setObserver(observerFunc) {
     this._observer = observerFunc;
   }
@@ -133,6 +140,38 @@ class Order {
     if (this._observer) {
       this._observer(this);
     }
+  }
+
+  getPaymentMethodName() {
+    if (this.paymentMethod === PAYMENT_METHODS.CREDIT_CARD) {
+      return "Credit Card";
+    } else if (this.paymentMethod === PAYMENT_METHODS.WIRE_TRANSFER) {
+      return "Wire Transfer";
+    }
+  }
+
+  validateCrediCard() {
+    if (!this.paymentInfo?.card_number) return false;
+    if (!this.paymentInfo?.cardholder) return false;
+    if (!this.paymentInfo?.cvc) return false;
+    if (!this.paymentInfo?.expiry_date) return false;
+
+    return true;
+  }
+
+  validateOrder() {
+    if (!this.customer_name?.trim?.()) return false;
+    if (!this.customer_surname?.trim?.()) return false;
+    if (!this.address?.trim?.()) return false;
+
+    if (
+      this.paymentMethod === PAYMENT_METHODS.CREDIT_CARD &&
+      !this.validateCrediCard()
+    ) {
+      return false;
+    }
+
+    return true;
   }
 
   setObserver(observer) {

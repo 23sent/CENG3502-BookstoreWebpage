@@ -14,6 +14,10 @@ body {
   flex-direction: column;
 }
 
+h1, h2, h3 {
+  margin: 0px;
+}
+
 textarea,
 input {
   color: black;
@@ -84,7 +88,8 @@ button:hover {
   align-items: center;
   flex: 1 0 0%;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
+
 }
 
 .search-input-div {
@@ -93,7 +98,7 @@ button:hover {
 }
 
 #search-input {
-  width: 250px;
+  width: 238px;
 }
 
 .search-input-icon {
@@ -108,7 +113,7 @@ button:hover {
 }
 
 #navbar-basket-container {
-  margin: 5px 15px;
+  margin: 5px 0px 5px 15px;
 }
 
 #basket-badge {
@@ -270,6 +275,13 @@ footer span {
   height: 100%;
   z-index: 10050;
   background-color: rgba(0, 0, 0, 0.2);
+
+  overflow: auto;
+  padding: 15px;
+}
+
+.modal-lg .modal-content {
+  width: 1140px !important;
 }
 
 .modal-content {
@@ -364,6 +376,7 @@ footer span {
 }
 
 .basket-item-add-remove-buttons {
+  font-size: 18px;
   display: flex;
   margin-left: auto;
 }
@@ -378,6 +391,10 @@ footer span {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   padding: 1px 10px;
+}
+
+#order-basket-info .basket-item-add-remove-buttons div {
+  border: 1px solid black;
 }
 
 #total-price {
@@ -483,6 +500,19 @@ footer span {
 .payment-option.selected {
   background-color: black;
   color: white;
+}
+.padding-10 {
+  padding-left: 10;
+  padding-right: 10;
+}
+
+.wire-transfer-info div {
+  font-size: 18px;
+}
+
+
+.wire-transfer-info div:first-child {
+  margin-bottom: 10px;
 }
 
 @media (max-width: 775px) {

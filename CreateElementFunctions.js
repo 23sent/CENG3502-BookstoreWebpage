@@ -1,4 +1,4 @@
-function BasketElement(basket) {
+function BasketElement(basket, readonly) {
   const basketList = document.createElement("div");
   basketList.classList.add("basket-list");
 
@@ -47,9 +47,13 @@ function BasketElement(basket) {
       basket.removeBook(book);
     };
 
-    addRemoveButtons.appendChild(removeButton);
+    if (!readonly) {
+      addRemoveButtons.appendChild(removeButton);
+    }
     addRemoveButtons.appendChild(countDiv);
-    addRemoveButtons.appendChild(addButton);
+    if (!readonly) {
+      addRemoveButtons.appendChild(addButton);
+    }
 
     basketItem.appendChild(bookImg);
     basketItem.appendChild(basketItemInfo);
@@ -104,7 +108,6 @@ function BookElement(book, basket) {
 
   buyButton.onclick = () => {
     basket.addBook(book);
-    console.log(basket.getPrice());
   };
 
   bookBuyButtonDiv.appendChild(buyButton);

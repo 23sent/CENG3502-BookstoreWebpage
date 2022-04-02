@@ -3,16 +3,13 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>Homework</title>
   <link rel="stylesheet" href="./index.css" />
 </head>
 
 <script src="./books.js"></script>
 <script src="./DataClasses.js"></script>
-<script src="./HtmlElementGenerators.js"></script>
+<script src="./CreateElementFunctions.js"></script>
 
 <body>
   <header>
@@ -23,11 +20,13 @@
           <input id="search-input" type="text" placeholder="Search..." />
           <span id="search-button" class="search-input-icon" onclick="searchBooks()">&#x1F50E;&#xFE0E;</span>
         </div>
-        <button onclick="openPage(PAGES.BOOKS)">Books</button>
-        <button id="navbar-basket-container" onclick="openPage(PAGES.BASKET)">
-          <span id="basket-badge"></span>
-          <span>books in basket</span>
-        </button>
+        <div>
+          <button onclick="openPage(PAGES.BOOKS)">Books</button>
+          <button id="navbar-basket-container" onclick="openPage(PAGES.BASKET)">
+            <span id="basket-badge"></span>
+            <span>books in basket</span>
+          </button>
+        </div>
       </div>
     </nav>
   </header>
@@ -38,7 +37,8 @@
       <button id="open-add-book-button" onclick="openAddBookModal()">+ Add Book</button>
     </div>
     <div id="booklist-content">
-      <!-- <div class="row">
+      <!-- Book Example 
+      <div class="row">
         <div class="book-item">
           <div class="book-item-body">
             <img class="book-img"
@@ -74,7 +74,8 @@
       </div>
     </div>
     <div id="basket-content">
-      <!-- <div>
+      <!-- Book(basket) Example
+      <div>
         <div class="basket-item">
           <img class="basket-item-img"
             src="https://raw.githubusercontent.com/benoitvallon/100-best-books/master/static/images/the-old-man-and-the-sea.jpg">
@@ -133,40 +134,42 @@
           <div class="payment-form-row">
             <div class="payment-form-question">
               <label>Name Surname</label>
-              <input name="name" type="text" />
+              <input name="cardholder" type="text" />
             </div>
             <div class="payment-form-question">
-              <label>Card No</label>
-              <input name="card" type="text" />
+              <label>Card Number</label>
+              <input name="card_number" type="text" />
             </div>
           </div>
 
           <div class="payment-form-row">
 
             <div class="payment-form-question">
-              <label>Date</label>
-              <input name="date" type="text" />
+              <label>Expiry Date</label>
+              <input name="expiry_date" type="text" />
             </div>
             <div class="payment-form-question">
-              <label>CVC</label>
+              <label>CVC Code</label>
               <input name="cvc" type="number" />
             </div>
           </div>
         </form>
 
-        <form id="payment-wire-transfer-form" class="payment-form">
+        <div id="payment-wire-transfer-form" class="payment-form">
           <div class="payment-form-row">
-            <div class="payment-form-question">
-              <label>Name Surname</label>
-              <input name="name" type="text" />
+            <div class="wire-transfer-info">
+              <div> Please use following transfer details:</div>
+              <div> Bank Name: İŞ BANK</div>
+              <div> Account Number: 01XXXXXXXXXXXXXXX </div>
+              <div> ........ </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
 
 
       <div class="payment-info">
-        <div class="payment-form-title">Shop Details</div>
+        <div class="payment-form-title">Customer Details</div>
         <div class="payment-info-col">
           <div class="payment-info-item">
             <div class="payment-info-title">Name Surname</div>
@@ -184,7 +187,7 @@
             <div id="order-total-price"> </div>
           </div>
           <div class="payment-info-item">
-            <button>Order Now</button>
+            <button id="order-button">Order Now</button>
           </div>
         </div>
       </div>
@@ -226,10 +229,50 @@
     </div>
   </div>
 
+  <div id="order-details-modal" class="modal modal-lg">
+    <div class="modal-content">
+      <div class="container">
+        <h2>Order Details</h2>
+        <h3>Your order is on its way.</h3>
+      </div>
+
+      <div class="container">
+        <h2>Customer</h2>
+        <div class="padding-10">
+          <div id="customer-info"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <h2>Adress</h2>
+        <div class="padding-10">
+          <div id="address-info"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <h2>Payment Method</h2>
+        <div class="padding-10">
+          <h3 id="payment-method-info"></h3>
+          <div id="payment-info"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <h2>Ordered Books</h2>
+        <div id="order-basket-info"></div>
+      </div>
+
+      <div class="add-book-button-div">
+        <button onclick="closeOrderDetailsModal()">Back to Shopping</button>
+      </div>
+    </div>
+  </div>
+
   <footer>
-    <span>MSKU CENG</span>
-    <span>CENG 3502 - Dynamic Web Programming</span>
-    <span>Utku Sagocak - 180709046</span>
+    <div>MSKU CENG</div>
+    <div>CENG 3502 - Dynamic Web Programming</div>
+    <div>Utku Sağocak</div>
   </footer>
 
   <script src="./index.js"></script>
