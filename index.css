@@ -55,6 +55,8 @@ button {
   transition-property: background-color, color;
   transition-timing-function: ease-in-out;
   transition-duration: 0.3s;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 8px;
 }
 
 button:hover {
@@ -221,11 +223,14 @@ footer span {
 }
 
 .book-title {
+  font-weight: bold;
+  font-size: 20px;
   padding: 2px;
   text-align: center;
 }
 
 .book-author {
+  font-weight: bold;
   text-align: center;
 }
 
@@ -385,6 +390,7 @@ footer span {
   padding: 1px 0px;
   width: 20px;
   text-align: center;
+  box-shadow: unset !important;
 }
 
 .basket-item-add-remove-buttons div {

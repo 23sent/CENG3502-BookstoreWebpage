@@ -35,7 +35,7 @@ function addBookButtonFunc() {
   const bookData = {
     author: formData.get("author"),
     title: formData.get("title"),
-    description: formData.get("title"),
+    description: formData.get("description"),
     image_url: formData.get("image_url"),
     price: formData.get("price"),
   };
