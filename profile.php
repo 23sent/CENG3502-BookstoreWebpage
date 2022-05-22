@@ -1,5 +1,5 @@
 <?php
-include("php/functions.php");
+include("php/functions.php"); // start session and import some useful functions.
 
 $username = $_SESSION["username"];
 $password = "";
@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       );
       $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+      // If request has a "password" parameter, update password otherwise onyl update username.
       if (empty($password)) {
         $sqlCommand = "UPDATE users SET username = :username WHERE email = :email;";
         $defArray = ['username' =>  $username, 'email' => $email];
@@ -28,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmt = $connection->prepare($sqlCommand);
       $stmt->execute($defArray);
 
+      // Update session info.
       $_SESSION['username'] = $username;
     } catch (PDOException $e) {
       echo "Connection Failed: " . $e->getMessage();
@@ -51,8 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-  <script src="./profile.js"></script>
-
   <?php include("navbar.php") ?>
 
   <div class="container mt-4">

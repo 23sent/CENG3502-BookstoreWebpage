@@ -1,10 +1,14 @@
 <?php
-include("functions.php");
+include("functions.php"); // start session and import some useful functions.
 
 if (!isLoggedIn() || $_SESSION["role"] != 1) {
   exit();
 }
 
+/**
+ * Add new book
+ * JSON body
+ */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $request_body = json_decode(file_get_contents('php://input'), true);
   $title = clear_input($request_body["title"]);

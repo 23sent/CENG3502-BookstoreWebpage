@@ -1,5 +1,5 @@
 <?php
-include("./php/functions.php");
+include("./php/functions.php"); // start session and import some useful functions.
 
 if (!isLoggedIn() || $_SESSION["role"] != 1) {
   exit();

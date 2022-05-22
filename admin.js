@@ -49,10 +49,8 @@ function closeAddAdminModal() {
 function createAdminUser() {
   const form = document.getElementById("add-admin-form");
   const formData = new FormData(form);
-  // form.action = "./php/createAdmin.php";
-  // form.method = "post";
-  // form.submit();
 
+  // Create admin and update admins.
   fetch("./php/createAdmin.php", { method: "post", body: formData })
     .then((response) => response.json())
     .then((data) => initAdmins(data));
@@ -83,6 +81,7 @@ function addBookButtonFunc() {
     }
   }
 
+  // Add book and update booklist.
   fetch("./php/addBook.php", {
     method: "POST",
     headers: {
@@ -113,6 +112,7 @@ function updateBookButtonFunc() {
   const form = document.getElementById("update-book-form");
   const formData = new FormData(form);
 
+  // Update book.
   fetch("./php/updateBook.php", {
     method: "POST",
     headers: {
@@ -197,6 +197,10 @@ function closeUpdateBookModal() {
   document.documentElement.style.overflow = null;
 }
 
+/**
+ * Create admins table.
+ * @param {array} a Admin users list
+ */
 function initAdmins(a) {
   admins = a;
   const adminsThead = document.getElementById("admins-thead");
@@ -251,6 +255,10 @@ function initAdmins(a) {
   }
 }
 
+/**
+ * Create books table
+ * @param {array} booklist
+ */
 function initBooks(booklist) {
   const booksThead = document.getElementById("books-thead");
   const booksBody = document.getElementById("books-tbody");
@@ -318,6 +326,7 @@ function initBooks(booklist) {
   }
 }
 
+// Filter books by title/author/description text and category.
 function searchAdminBooks() {
   const searchText = document.getElementById("search-input").value;
   const category = document.getElementById("category-filter").value;
@@ -366,6 +375,7 @@ window.onload = () => {
     }
   });
 
+  // Add category options to select element.
   const categoryFilter = document.getElementById("category-filter");
   const option = document.createElement("option");
   option.value = "";

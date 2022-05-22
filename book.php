@@ -1,5 +1,5 @@
 <?php
-include("./php/functions.php");
+include("./php/functions.php"); // start session and import some useful functions.
 
 $book = array();
 

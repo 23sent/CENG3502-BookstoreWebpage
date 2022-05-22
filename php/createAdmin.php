@@ -1,5 +1,5 @@
 <?php
-include("functions.php");
+include("functions.php"); // start session and import some useful functions.
 
 if (!isLoggedIn() || $_SESSION["role"] != 1) {
   exit();
@@ -10,7 +10,7 @@ $password = "";
 $email = "";
 $role = 1; // admin
 
-// TODO - VALIDATE SIGN UP FORM
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = clear_input($_POST["username"]);
   $password = clear_input($_POST["password"]);

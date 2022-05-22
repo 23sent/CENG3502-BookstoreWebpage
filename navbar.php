@@ -1,3 +1,4 @@
+<!-- A navbar  component that uses by all pages.-->
 <header>
   <nav class="navbar">
     <h1 class="navbar-title"><a class="only_link" href=" ./index.php">Library</a></h1>

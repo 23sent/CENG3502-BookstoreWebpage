@@ -13,7 +13,6 @@ $email = "";
 $role = 2; // customer
 
 
-// TODO - VALIDATE SIGN UP FORM
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = clear_input($_POST["username"]);
   $password = clear_input($_POST["password"]);

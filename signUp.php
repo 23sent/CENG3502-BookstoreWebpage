@@ -1,4 +1,5 @@
-<?php include("php/functions.php"); ?>
+<?php include("php/functions.php"); // start session and import some useful functions. 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
