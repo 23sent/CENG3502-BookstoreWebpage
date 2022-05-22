@@ -1,11 +1,12 @@
 class Book {
-  constructor({ id, author, title, image_url, price, description }) {
+  constructor({ id, author, title, image_url, price, description, category }) {
     this.id = id;
     this.author = author;
     this.title = title;
     this.image_url = image_url;
     this.price = price;
     this.description = description;
+    this.category = category;
   }
 }
 
@@ -22,6 +23,13 @@ class BookList {
     this._observer = null;
   }
 
+  clearBooks() {
+    this.books = [];
+    if (this._observer) {
+      this._observer(this);
+    }
+  }
+
   addBook(book) {
     this.books.push(book);
     if (this._observer) {
@@ -29,13 +37,19 @@ class BookList {
     }
   }
 
-  getBooks(searchText) {
-    return this.books.filter(
-      (book) =>
+  getBooks(searchText, category) {
+    return this.books.filter((book) => {
+      let correct =
         book.title.toLowerCase().includes(searchText.toLowerCase()) ||
         book.author.toLowerCase().includes(searchText.toLowerCase()) ||
-        book.description.toLowerCase().includes(searchText.toLowerCase())
-    );
+        book.description.toLowerCase().includes(searchText.toLowerCase());
+
+      if (category) {
+        correct = correct && JSON.parse(book.category).includes(category);
+      }
+
+      return correct;
+    });
   }
 
   setObserver(observerFunc) {

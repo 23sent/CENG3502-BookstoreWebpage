@@ -1,64 +1,43 @@
+<?php
+include("./php/functions.php");
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
-  <title>Homework</title>
+  <title>Library</title>
+  <link rel="stylesheet" href="./bootstrap/bootstrap-grid.css">
   <link rel="stylesheet" href="./index.css" />
 </head>
 
-<script src="./books.js"></script>
-<script src="./DataClasses.js"></script>
-<script src="./CreateElementFunctions.js"></script>
+<script src="./js/books.js"></script>
+<script src="./js/DataClasses.js"></script>
+<script src="./js/CreateElementFunctions.js"></script>
+<script src="./js/functions.js"></script>
 
 <body>
-  <header>
-    <nav class="navbar">
-      <h1 class="navbar-title">Library</h1>
-      <div class="navbar-right-part">
-        <div class="search-input-div">
+  <?php include("navbar.php") ?>
+
+
+  <div id="booklist-page" class="container" style="display: block">
+    <div class="page-header">
+      <div class="page-title">Books </div>
+      <div class="d-flex justify-content-center" style="flex-wrap: wrap">
+        <div class="search-input-div my-1">
           <input id="search-input" type="text" placeholder="Search..." />
           <span id="search-button" class="search-input-icon" onclick="searchBooks()">&#x1F50E;&#xFE0E;</span>
         </div>
         <div>
-          <button onclick="openPage(PAGES.BOOKS)">Books</button>
-          <button id="navbar-basket-container" onclick="openPage(PAGES.BASKET)">
-            <span id="basket-badge"></span>
-            <span>books in basket</span>
-          </button>
+          <select id="category-filter" class="my-1"></select>
         </div>
       </div>
-    </nav>
-  </header>
-
-  <div id="booklist-page" class="container" style="display: block">
-    <div class="page-header">
-      <div class="page-title">Books</div>
-      <button id="open-add-book-button" onclick="openAddBookModal()">+ Add Book</button>
     </div>
-    <div id="booklist-content">
-      <!-- Book Example 
-      <div class="row">
-        <div class="book-item">
-          <div class="book-item-body">
-            <img class="book-img"
-              src="https://raw.githubusercontent.com/benoitvallon/100-best-books/master/static/images/the-old-man-and-the-sea.jpg"></img>
-            <div class="book-info">
-              <div class="book-title">The Epic Of Gilgamesh</div>
-              <div class="book-author">Unknown</div>
-              <div class="book-desc">
-                The Epic of Gilgamesh is an epic poem from ancient Mesopotamia,
-                regarded as the earliest surviving notable literature and the
-                second oldest religious text, after the Pyramid Texts.
-              </div>
-            </div>
-          </div>
-          <div class="book-buy-button-div">
-            <button class="book-buy-button"> + Add to Basket</button>
-          </div>
-        </div> -->
-    </div>
+    <div id="booklist-content"> </div>
   </div>
+
+
 
   <div id="basket-page" class="container" style="display: none">
     <div class="page-header">
@@ -73,25 +52,7 @@
         </button>
       </div>
     </div>
-    <div id="basket-content">
-      <!-- Book(basket) Example
-      <div>
-        <div class="basket-item">
-          <img class="basket-item-img"
-            src="https://raw.githubusercontent.com/benoitvallon/100-best-books/master/static/images/the-old-man-and-the-sea.jpg">
-          <div class="basket-item-info">
-            <div class="basket-item-title">The Divine Comedy</div>
-            <div class="basket-item-author">Author Name</div>
-          </div>
-          <div class="basket-item-add-remove-buttons">
-            <button>-</button>
-            <div>5</div>
-            <button>+</button>
-          </div>
-        </div>
-      </div> -->
-    </div>
-
+    <div id="basket-content"> </div>
   </div>
 
   <div id="payment-page" style="display: none">
@@ -194,41 +155,6 @@
     </div>
   </div>
 
-  <div id="add-book-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="modal-title">Add New Book to Library</span>
-        <button id="add-book-close-button" onclick="closeAddBookModal()">X</button>
-      </div>
-
-      <form id="add-book-form">
-        <div class="add-book-form-question">
-          <label>Title</label>
-          <input name="title" type="text" />
-        </div>
-        <div class="add-book-form-question">
-          <label>Author</label>
-          <input name="author" type="text" />
-        </div>
-        <div class="add-book-form-question">
-          <label>Description</label>
-          <input name="description" type="text" />
-        </div>
-        <div class="add-book-form-question">
-          <label>Image Url</label>
-          <input name="image_url" type="text" />
-        </div>
-        <div class="add-book-form-question">
-          <label>Price</label>
-          <input name="price" type="number" />
-        </div>
-      </form>
-      <div class="add-book-button-div">
-        <button id="add-book-button" onclick="addBookButtonFunc()">+ Add Book</button>
-      </div>
-    </div>
-  </div>
-
   <div id="order-details-modal" class="modal modal-lg">
     <div class="modal-content">
       <div class="container">
@@ -269,12 +195,7 @@
     </div>
   </div>
 
-  <footer>
-    <div>MSKU CENG</div>
-    <div>CENG 3502 - Dynamic Web Programming</div>
-    <div>Utku Sağocak</div>
-  </footer>
-
+  <?php include("footer.php") ?>
   <script src="./index.js"></script>
 </body>
 

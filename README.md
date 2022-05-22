@@ -2,4 +2,4 @@
 
 Github repo: https://github.com/23sent/CENG3502-BookstoreWebpage.git
 
-Github Pages: https://23sent.github.io/CENG3502-BookstoreWebpage/
+Github Pages: https://23sent.github.io/CENG3502-BookstoreWebpage/ (php branch)

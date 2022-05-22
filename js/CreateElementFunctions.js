@@ -36,6 +36,7 @@ function BasketElement(basket, readonly) {
     addButton.innerText = "+";
     addButton.onclick = () => {
       basket.addBook(book);
+      localStorage.setItem("basket", JSON.stringify(basket));
     };
 
     const countDiv = document.createElement("div");
@@ -45,6 +46,7 @@ function BasketElement(basket, readonly) {
     removeButton.innerText = "-";
     removeButton.onclick = () => {
       basket.removeBook(book);
+      localStorage.setItem("basket", JSON.stringify(basket));
     };
 
     if (!readonly) {
@@ -99,6 +101,17 @@ function BookElement(book, basket) {
   bookItemBody.appendChild(bookImg);
   bookItemBody.appendChild(bookInfo);
 
+  const bookDetailsButtonDiv = document.createElement("div");
+  bookDetailsButtonDiv.classList.add("book-buy-button-div");
+
+  const bookDetails = document.createElement("button");
+  bookDetails.classList.add("book-buy-button");
+  bookDetails.innerText = `Details`;
+  bookDetails.onclick = () => {
+    window.location = `book.php?id=${book.id}`;
+  };
+  bookDetailsButtonDiv.appendChild(bookDetails);
+
   const bookBuyButtonDiv = document.createElement("div");
   bookBuyButtonDiv.classList.add("book-buy-button-div");
 
@@ -108,11 +121,12 @@ function BookElement(book, basket) {
 
   buyButton.onclick = () => {
     basket.addBook(book);
+    localStorage.setItem("basket", JSON.stringify(basket));
   };
-
   bookBuyButtonDiv.appendChild(buyButton);
 
   bookItem.appendChild(bookItemBody);
+  bookItem.appendChild(bookDetailsButtonDiv);
   bookItem.appendChild(bookBuyButtonDiv);
 
   return bookItem;
@@ -120,10 +134,12 @@ function BookElement(book, basket) {
 
 function BookListElement(bookList, basket) {
   const row = document.createElement("div");
-  row.classList.add("row");
+  row.classList.add("book-list-row");
 
   const searchText = document.getElementById("search-input").value;
-  const books = bookList.getBooks(searchText);
+  const category = document.getElementById("category-filter").value;
+
+  const books = bookList.getBooks(searchText, category);
 
   for (let book of books) {
     const bookElement = BookElement(book, basket);

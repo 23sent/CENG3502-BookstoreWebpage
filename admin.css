@@ -1,0 +1,46 @@
+table {
+  border: 1px solid black;
+  /* border-right: unset;
+  border-bottom: unset; */
+  border-collapse: collapse;
+
+  width: 100%;
+}
+
+th {
+  border-right: 1px solid black;
+  padding: 8px;
+}
+
+tr {
+  border: 1px solid black;
+
+}
+
+td {
+  border-right: 1px solid black;
+  padding: 8px;
+}
+
+th.edit-column {
+ width: 80px;
+ padding: 8px;
+ white-space: nowrap;
+}
+
+td.edit-column {
+  padding: 4px;
+  text-align: center;
+}
+
+td.edit-column span{
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0px 5px;
+  border: 0px;
+}
+
+.form-row {
+  margin: 5px 2px;
+}
